@@ -678,14 +678,14 @@ DROP SEQUENCE %s CASCADE;
     public function getDropIndexDDL(Index $index)
     {
         if ($index instanceof Unique) {
-            $pattern = "
-    ALTER TABLE %s DROP CONSTRAINT %s;
-    ";
+        $pattern = "
+DROP INDEX %s;
+";
 
-            return sprintf($pattern,
-                $this->quoteIdentifier($index->getTable()->getName()),
-                $this->quoteIdentifier($index->getName())
-            );
+        return sprintf($pattern,
+            $this->quoteIdentifier($index->getName())
+        );
+
         } else {
             return parent::getDropIndexDDL($index);
         }
