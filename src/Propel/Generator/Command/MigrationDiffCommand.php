@@ -209,6 +209,8 @@ class MigrationDiffCommand extends AbstractCommand
             $migrationsDown[$name]  = $platform->getModifyDatabaseDDL($databaseDiff->getReverseDiff());
         }
 
+        $migrationsUp = array_filter($migrationsUp);
+
         if (!$migrationsUp) {
             $output->writeln('Same XML and database structures for all datasource - no diff to generate');
 
